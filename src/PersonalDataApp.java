@@ -21,20 +21,16 @@ public class PersonalDataApp {
             long phoneNumber = Long.parseLong(tokens[4]);
             char gender = tokens[5].charAt(0);
 
-            // Валидация даты рождения
             if (!birthDate.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
                 throw new IllegalArgumentException("Неверный формат даты рождения. Используйте dd.mm.yyyy.");
             }
 
-            // Валидация пола
             if (gender != 'f' && gender != 'm') {
                 throw new IllegalArgumentException("Неверное значение пола. Используйте 'f' или 'm'.");
             }
 
-            // Создание строки для записи в файл
             String dataLine = lastName + " " + firstName + " " + middleName + " " + birthDate + " " + phoneNumber + " " + gender;
 
-            // Запись в файл
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(lastName + ".txt", true))) {
                 writer.write(dataLine);
                 writer.newLine();
